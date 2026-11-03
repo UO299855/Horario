@@ -1,0 +1,278 @@
+:root {
+  --color-math: #003f87;
+  --color-math-text: #ffffff;
+  --color-software: #EA8304;
+  --color-software-text: #f2f3f7;
+  --color-bg: #f7f5f0;
+  --color-surface: #ffffff;
+  --color-border: #e4dfd3;
+  --color-line: #efebe2;
+  --color-text: #1f2430;
+  --color-muted: #6b6f7b;
+  --color-error: #b42318;
+  --radius: 12px;
+  --shadow: 0 1px 2px rgba(31, 36, 48, 0.08);
+
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+/* App layout */
+
+.app__header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.app__title {
+  font-size: 1.2rem;
+}
+
+.app__main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+@media (min-width: 720px) {
+  .app__header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+  }
+
+  .app__main {
+    padding: 1.5rem 2rem;
+  }
+}
+
+/* Legend */
+
+.legend {
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9rem;
+}
+
+.legend__item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.legend__swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.legend__swatch--math {
+  background: var(--color-math);
+}
+
+.legend__swatch--software {
+  background: var(--color-software);
+}
+
+/* Week navigation */
+
+.schedule {
+  display: grid;
+  gap: 1rem;
+}
+
+.week-nav {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.week-nav__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  text-align: center;
+}
+
+.week-nav__range {
+  font-weight: 600;
+}
+
+.week-nav__button,
+.week-nav__today {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.week-nav__button {
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: 0.35rem 0.8rem;
+}
+
+.week-nav__today {
+  font-size: 0.85rem;
+  color: var(--color-math);
+  border-color: var(--color-math);
+}
+
+.week-nav__button:hover,
+.week-nav__today:hover {
+  background: var(--color-line);
+}
+
+.week-nav__button:focus-visible,
+.week-nav__today:focus-visible {
+  outline: 2px solid var(--color-math);
+  outline-offset: 2px;
+}
+
+/* Calendar grid */
+
+.calendar__scroll {
+  overflow-x: auto;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* On phones the grid keeps a readable width and scrolls sideways */
+.calendar__grid {
+  display: grid;
+  min-width: 640px;
+}
+
+@media (min-width: 900px) {
+  .calendar__grid {
+    min-width: 0;
+  }
+}
+
+.calendar__corner {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.calendar__day-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.6rem 0.25rem;
+  border-bottom: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-line);
+}
+
+.calendar__weekday {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.calendar__date {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.calendar__times {
+  position: relative;
+}
+
+.calendar__hour-label {
+  position: absolute;
+  right: 0.5rem;
+  padding-top: 2px;
+  font-size: 0.7rem;
+  color: var(--color-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.calendar__column {
+  position: relative;
+  border-left: 1px solid var(--color-line);
+}
+
+.calendar__hour-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 1px solid var(--color-line);
+}
+
+/* Event blocks */
+
+.calendar-event {
+  position: absolute;
+  overflow: hidden;
+  padding: 0.3rem 0.45rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  line-height: 1.25;
+  box-shadow: var(--shadow);
+}
+
+.calendar-event--math {
+  background: var(--color-math);
+  color: var(--color-math-text);
+}
+
+.calendar-event--software {
+  background: var(--color-software);
+  color: var(--color-software-text);
+}
+
+.calendar-event__subject {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.calendar-event__meta {
+  opacity: 0.9;
+}
+
+/* Status messages */
+
+.status {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.status--error {
+  color: var(--color-error);
+}
