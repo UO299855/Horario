@@ -2,6 +2,6 @@
 *session.json
 
 *.xlsx
-*.csv
+
 
 */__pycache__
